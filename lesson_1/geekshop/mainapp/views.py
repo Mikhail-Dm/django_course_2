@@ -3,46 +3,38 @@ from django.shortcuts import render
 
 from mainapp.models import Product, ProductCategory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from basketapp.models import Basket
 from django.shortcuts import get_object_or_404
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    return []
-
 def get_hot_product():
     return random.sample(list(Product.objects.all()), 1)[0]
+
 
 def get_some_products(hot_product):
     same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)
     return same_products
 
+
 def product(request, pk):
     links_menu = ProductCategory.objects.all()
     context = {
         'product': get_object_or_404(Product, pk=pk),
-        'basket': get_basket(request.user),
         'links_menu': links_menu
     }
     return render(request, 'mainapp/product.html', context)
-
 
 
 def index(request):
     context = {
         'title': 'Главная',
         'products': Product.objects.all()[:4],
-        'basket': get_basket(request.user)
     }
     return render(request, 'mainapp/index.html', context)
 
 
 def contact(request):
     context = {
-        'title': 'Контакты',
-        'basket': get_basket(request.user)
+        'title': 'Контакты'
     }
     return render(request, 'mainapp/contact.html', context)
 
@@ -73,8 +65,7 @@ def products(request, pk=None, page=1):
             'links_menu': links_menu,
             'title': 'продукты',
             'category': category_item,
-            'products': products_paginator,
-            'basket': get_basket(request.user)
+            'products': products_paginator
         }
         return render(request, 'mainapp/products_list.html', context=context)
 
@@ -85,6 +76,5 @@ def products(request, pk=None, page=1):
         'title': 'продукты',
         'hot_product': hot_product,
         'same_products': same_products,
-        'basket': get_basket(request.user)
     }
     return render(request, 'mainapp/products.html', context=context)

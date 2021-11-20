@@ -22,8 +22,7 @@ class UsersListView(AccessMixin, ListView):
     template_name = 'adminapp/users.html'
 
 
-
-@user_passes_test(lambda u:u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser)
 def user_create(request):
     if request.method == 'POST':
         user_form = ShopUserRegisterForm(request.POST, request.FILES)
@@ -37,7 +36,8 @@ def user_create(request):
     }
     return render(request, 'adminapp/user_form.html', context)
 
-@user_passes_test(lambda u:u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser)
 def user_update(request, pk):
     current_user = get_object_or_404(ShopUser, pk=pk)
     if request.method == 'POST':
@@ -52,7 +52,8 @@ def user_update(request, pk):
     }
     return render(request, 'adminapp/user_form.html', context)
 
-@user_passes_test(lambda u:u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser)
 def user_delete(request, pk):
     current_user = get_object_or_404(ShopUser, pk=pk)
     if request.method == 'POST':
@@ -61,6 +62,7 @@ def user_delete(request, pk):
         else:
             current_user.is_active = True
         current_user.save()
+        # current_user.delete()
         return HttpResponseRedirect(reverse('adminapp:user_list'))
 
     context = {
@@ -68,14 +70,16 @@ def user_delete(request, pk):
     }
     return render(request, 'user_delete.html', context)
 
-@user_passes_test(lambda u:u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser)
 def category_create(request):
     context = {
 
     }
     return render(request, '', context)
 
-@user_passes_test(lambda u:u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser)
 def categories(request):
     categories_list = ProductCategory.objects.all()
     content = {
@@ -83,20 +87,21 @@ def categories(request):
     }
     return render(request, 'adminapp/categories.html', content)
 
-@user_passes_test(lambda u:u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser)
 def category_update(request):
     context = {
 
     }
     return render(request, '', context)
 
-@user_passes_test(lambda u:u.is_superuser)
+
+@user_passes_test(lambda u: u.is_superuser)
 def category_delete(request):
     context = {
 
     }
     return render(request, '', context)
-
 
 
 class ProductCreateView(AccessMixin, CreateView):
