@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
 
-from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm, ShopUserProfileEditForm
 from authapp.models import ShopUser
 from authapp.services import send_verify_email
 
@@ -54,14 +54,17 @@ def register(request):
 def edit(request):
     if request.method == 'POST':
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
+        edit_profile_form = ShopUserProfileEditForm(request.POST, instance=request.user.shopuserprofile)
         if edit_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('index'))
     else:
         edit_form = ShopUserEditForm(instance=request.user)
+        edit_profile_form = ShopUserProfileEditForm(instance=request.user.shopuserprofile)
 
     context = {
-        'edit_form': edit_form
+        'edit_form': edit_form,
+        'edit_profile_form': edit_profile_form
     }
     return render(request, 'authapp/edit.html', context)
 
@@ -72,6 +75,8 @@ def verify(request, email, key):
         if user.activate_key == key and not user.is_activate_key_expired():
             user.activate_user()
             auth.login(request, user)
+
             # Команда для отображения письма в консоли
             # sudo python3 -m smtpd -n -c DebuggingServer localhost:25
+
         return render(request, 'authapp/register_result.html')

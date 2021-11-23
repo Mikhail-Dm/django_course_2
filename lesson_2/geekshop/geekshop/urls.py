@@ -22,8 +22,9 @@ from mainapp import views as mainapp
 
 
 urlpatterns = [
-    path('', mainapp.index, name="index"),
-    path('contact/', mainapp.contact, name="contact"),
+    path('', mainapp.index, name='index'),
+    path('', include('social_django.urls', namespace='social')),
+    path('contact/', mainapp.contact, name='contact'),
     path('products/', include('mainapp.urls', namespace='products')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('basket/', include('basketapp.urls', namespace='basket')),
