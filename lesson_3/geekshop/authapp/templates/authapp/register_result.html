@@ -1,0 +1,15 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Поздравляем!</h1>
+        <p>Вы прошли аутентификацию.</p>
+        <p>Добро пожаловать!</p>
+    {% else %}
+        <h1>Ошибка!</h1>
+        <p>Что-то пошло не так.</p>
+    {% endif %}
+    <hr>
+    <a href="{% url 'index' %}">На главную</a>
+{% endblock %}
