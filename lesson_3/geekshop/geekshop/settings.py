@@ -45,10 +45,11 @@ INSTALLED_APPS = [
 
     'social_django',
 
-    'mainapp',
+    'adminapp',
     'authapp',
     'basketapp',
-    'adminapp',
+    'ordersapp',
+    'mainapp',
 ]
 
 AUTH_USER_MODEL = 'authapp.ShopUser'

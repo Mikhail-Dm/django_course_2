@@ -58,11 +58,11 @@ def user_delete(request, pk):
     current_user = get_object_or_404(ShopUser, pk=pk)
     if request.method == 'POST':
         if current_user.is_active:
-            current_user.is_active = False
+            # current_user.is_active = False
+            current_user.delete()
         else:
             current_user.is_active = True
-        current_user.save()
-        # current_user.delete()
+            current_user.save()
         return HttpResponseRedirect(reverse('adminapp:user_list'))
 
     context = {

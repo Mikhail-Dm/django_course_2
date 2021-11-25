@@ -71,6 +71,7 @@ def edit(request):
 
 def verify(request, email, key):
     user = ShopUser.objects.filter(email=email).first()
+    user.backend = 'django.contrib.auth.backends.ModelBackend'
     if user:
         if user.activate_key == key and not user.is_activate_key_expired():
             user.activate_user()

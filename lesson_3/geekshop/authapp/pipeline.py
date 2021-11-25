@@ -12,7 +12,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
     # url_method = 'http://api.vk.com/method/'
     access_token = response.get('access_token')
-    fields = ','.join(['bdate', 'sex', 'about'])
+    fields = ','.join(['bdate', 'sex', 'about', 'photo_max_orig'])
 
     api_url = f'{settings.SOCIAL_AUTH_VK_OAUTH2_URL_METHOD}users.get?fields={fields}&access_token={access_token}&v=5.131'
 
@@ -41,3 +41,17 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
     if 'about' in data_json:
         user.shopuserprofile.about_me = data_json['about']
+
+    if 'photo_max_orig' in data_json:
+        # 2 Варианта, как достать фото из ВК
+        # 1)
+        # user.avatar_url = data_json['photo_max_orig']
+        # 2)
+        photo_path = f'users_avatars/{user.pk}.jpeg'
+        photo_full_path = f'{settings.MEDIA_ROOT}/{photo_path}'
+        photo_data = requests.get(data_json['photo_max_orig'])
+        with open(photo_full_path, 'wb') as photo_file:
+            photo_file.write(photo_data.content)
+        user.avatar = photo_path
+
+    user.save()
