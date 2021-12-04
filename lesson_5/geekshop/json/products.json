@@ -1,0 +1,51 @@
+[
+  {
+    "category": "дом",
+    "name": "дом 1",
+    "image": "products/product-1.jpeg",
+    "price": 12,
+    "quantity": 12
+  },
+  {
+    "category": "дом",
+    "name": "дом 2",
+    "image": "products/product-2.jpeg",
+    "price": 45,
+    "quantity": 11
+  },
+  {
+    "category": "офис",
+    "name": "офис 1",
+    "image": "products/product-3.jpeg",
+    "price": 55,
+    "quantity": 10
+  },
+  {
+    "category": "офис",
+    "name": "офис 2",
+    "image": "products/product-4.jpeg",
+    "price": 43,
+    "quantity": 7
+  },
+  {
+    "category": "модерн",
+    "name": "модерн 1",
+    "image": "products/product-5.jpeg",
+    "price": 65,
+    "quantity": 8
+  },
+  {
+    "category": "модерн",
+    "name": "модерн 2",
+    "image": "products/product-6.jpeg",
+    "price": 76,
+    "quantity": 5
+  },
+  {
+    "category": "классика",
+    "name": "классика 1",
+    "image": "products/product-7.jpeg",
+    "price": 59,
+    "quantity": 7
+  }
+]
