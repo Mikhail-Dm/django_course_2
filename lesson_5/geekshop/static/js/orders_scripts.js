@@ -85,27 +85,28 @@ window.onload = function () {
 
         if (product_id) {
             $.ajax({
-            url: "/order/product/price/" + product_id + "/",
-            success: function (data) {
-               if (data.price) {
-                   price_arr[orderitem_num] = data.price;
-                   if (isNaN(quantity_arr[orderitem_num])) {
-                       quantity_arr[orderitem_num] = 0;
+                url: "/order/product/price/" + product_id + "/",
+                success: function (data) {
+                   if (data.price) {
+                       price_arr[orderitem_num] = data.price;
+                       if (isNaN(quantity_arr[orderitem_num])) {
+                           quantity_arr[orderitem_num] = 0;
+                       }
+
+                       var price_string = '<span>' + data.price.toString().replace('.', ',') + '</span> руб.';
+                       var current_tr = $('.order_form table').find('tr:eq(' + (orderitem_num + 1) + ')');
+
+                       current_tr.find('td:eq(2)').html(price_string);
+
+                       if (isNaN(current_tr.find('input[type="number"]').val())) {
+                           current_tr.find('input[type="number"]').val(0);
+                       }
+
+                       order_summary_recalc();
                    }
-
-                   var price_string = '<span>' + data.price.toString().replace('.', ',') + '</span> руб.';
-                   var current_tr = $('.order_form table').find('tr:eq(' + (orderitem_num + 1) + ')');
-
-                   current_tr.find('td:eq(2)').html(price_string);
-
-                   if (isNaN(current_tr.find('input[type="number"]').val())) {
-                       current_tr.find('input[type="number"]').val(0);
-                   }
-
-                   order_summary_recalc();
-               }
-            },
-        });
+                },
+            });
+        }
     })
 
 
