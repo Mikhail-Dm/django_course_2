@@ -104,8 +104,8 @@ DATABASES = {
         'NAME': 'geekshop',
         'ENGINE': 'django.db.backends.postgresql',
         'USER': 'django',
-        'PASSWORD': 'geekbrains',
-        'HOST': '127.0.0.1'
+        # 'PASSWORD': 'geekbrains',
+        # 'HOST': '127.0.0.1'
     }
 }
 
