@@ -103,7 +103,7 @@ DATABASES = {
     'default': {
         'NAME': 'geekshop',
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'django',
+        'USER': 'postgres',
         # 'PASSWORD': 'geekbrains',
         # 'HOST': '127.0.0.1'
     }
