@@ -1,0 +1,11 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Account activation
+From: webmaster@localhost
+To: localhost1@gb.ru
+Date: Wed, 24 Nov 2021 15:15:43 -0000
+Message-ID: <163776694302.5881.8691674270937624060@mike-VB>
+
+Your activation url: http://127.0.0.1:8000/auth/verify/localhost1@gb.ru/8b73ed0a608477bc3c13d9963deef12583ee3d4c/
+-------------------------------------------------------------------------------
