@@ -63,6 +63,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 if DEBUG:
@@ -134,8 +136,6 @@ else:
             'USER': 'postgres',
         }
     }
-
-
 
 
 # Password validation
