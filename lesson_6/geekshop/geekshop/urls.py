@@ -20,7 +20,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from mainapp import views as mainapp
 
-
 urlpatterns = [
     path('', mainapp.index, name='index'),
     path('', include('social_django.urls', namespace='social')),
@@ -35,7 +34,9 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
     import debug_toolbar
 
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += [re_path(r'^__debug__/', include(debug_toolbar.urls))]
