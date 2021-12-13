@@ -96,6 +96,7 @@ class OrderUpdateView(UpdateView):
             form.instance.user = self.request.user
             self.object = form.save()
             if orderitems.is_valid():
+                print(orderitems)
                 orderitems.instance = self.object
                 orderitems.save()
 
