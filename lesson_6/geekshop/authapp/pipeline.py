@@ -19,7 +19,6 @@ def save_user_profile(backend, user, response, *args, **kwargs):
     response = requests.get(api_url)
     if response.status_code != 200:
         return
-
     data_json = response.json()['response'][0]
 
     if 'sex' in data_json:
