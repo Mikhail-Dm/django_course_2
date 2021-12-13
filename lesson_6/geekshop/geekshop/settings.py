@@ -117,7 +117,7 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-ENV_TYPE = os.getenv('ENV_TYPE')
+ENV_TYPE = os.getenv('ENV_TYPE', 'local')
 
 if ENV_TYPE == 'local':
     DATABASES = {
