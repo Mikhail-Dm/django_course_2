@@ -29,4 +29,4 @@ class OrderItemForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
 
-        self.fields['product'].queryset = Product.objects.filter(is_active=True).selector_related()
+        self.fields['product'].queryset = Product.objects.filter(is_active=True).select_related()
