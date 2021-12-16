@@ -73,7 +73,7 @@ def get_products_in_category_orederd_by_price(pk):
         key = f'products_in_category_orederd_by_price_{pk}'
         products = cache.get(key)
         if products is None:
-            products = Product.objects.filter(category__pk=pk, is_active=True, \category__is_active=True).order_by('price')
+            products = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
             cache.set(key, products)
         return products
     else:
@@ -91,7 +91,7 @@ def get_some_products(hot_product):
 
 
 def product(request, pk):
-    links_menu = ProductCategory.objects.all()
+    links_menu = get_links_menu()
     context = {
         'product': get_object_or_404(Product, pk=pk),
         'links_menu': links_menu
@@ -115,7 +115,7 @@ def contact(request):
 
 
 def products(request, pk=None, page=1):
-    links_menu = ProductCategory.objects.all()
+    links_menu = get_links_menu()
     if pk is not None:
         if pk == 0:
             products_list = Product.objects.all()

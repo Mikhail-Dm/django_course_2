@@ -234,16 +234,16 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
-if os.name == 'posix':
-    CACHE_MIDDLEWARE_ALIAS = 'default'
-    CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'  # geekshop_
-    CACHE_MIDDLEWARE_SECONDS = 120
+# if os.name == 'posix':
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'  # geekshop_
+CACHE_MIDDLEWARE_SECONDS = 120
 
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-            'LOCATION': '89.108.83.52:11211',
-        }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '89.108.83.52:11211',
     }
+}
 
 LOW_CACHE = True
