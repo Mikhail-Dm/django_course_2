@@ -1,0 +1,6 @@
+http://89.108.83.52/auth/login/ POST username=django&password=geekbrains
+http://89.108.83.52/
+http://89.108.83.52/products/
+http://89.108.83.52/contact/
+http://89.108.83.52/order/
+http://89.108.83.52/order/update/10/

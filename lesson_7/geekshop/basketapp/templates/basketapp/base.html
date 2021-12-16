@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% block css %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+        {% endblock %}
+
+        {% block js %}
+            <script src = "http://code.jquery.com/jquery-latest.js"></script>
+<!--            <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>-->
+            <script src="{% static 'js/basket_scripts.js' %}"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <div class="basket_container">
+            <div class="login">
+                {% block head %}
+                    <div class="h2 text-center head">
+                        Ваша корзина, {% if user.first_name %}{{ user.first_name }}{% else %}Пользователь{% endif %}
+                    </div>
+                {% endblock %}
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
