@@ -54,6 +54,8 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'authapp.ShopUser'
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,8 +65,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-
     'social_django.middleware.SocialAuthExceptionMiddleware',
+
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 if DEBUG:
@@ -137,7 +140,6 @@ else:
         }
     }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -162,7 +164,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'ru-ru'
 
-
 TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
@@ -183,7 +184,6 @@ if ENV_TYPE == 'local':
     )
 else:
     STATIC_ROOT = BASE_DIR / 'static'
-
 
 MEDIA_URL = '/media/'
 
@@ -236,3 +236,17 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
+
+# if os.name == 'posix':
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'  # geekshop_
+CACHE_MIDDLEWARE_SECONDS = 120
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '89.108.83.52:11211',
+    }
+}
+
+LOW_CACHE = True
