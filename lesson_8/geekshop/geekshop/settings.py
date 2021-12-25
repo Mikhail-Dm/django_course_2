@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+# INTERNAL_IPS = ('127.0.0.1', '89.108.83.52')
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,7 +76,6 @@ if DEBUG:
     def show_toolbar(request):
         return True
 
-
     DEBUG_TOOLBAR_CONFIG = {
         'SHOW_TOOLBAR_CALLBACK': show_toolbar,
     }
@@ -85,8 +86,8 @@ if DEBUG:
         'debug_toolbar.panels.settings.SettingsPanel',
         'debug_toolbar.panels.headers.HeadersPanel',
         'debug_toolbar.panels.request.RequestPanel',
-        'debug_toolbar.panels.sql.SQLPanel',
-        'debug_toolbar.panels.templates.TemplatesPanel',
+        # 'debug_toolbar.panels.sql.SQLPanel',
+        # 'debug_toolbar.panels.templates.TemplatesPanel',
         'debug_toolbar.panels.staticfiles.StaticFilesPanel',
         'debug_toolbar.panels.cache.CachePanel',
         'debug_toolbar.panels.signals.SignalsPanel',
@@ -95,6 +96,7 @@ if DEBUG:
         'debug_toolbar.panels.profiling.ProfilingPanel',
         'template_profiler_panel.panels.template.TemplateProfilerPanel',
     ]
+
 
 ROOT_URLCONF = 'geekshop.urls'
 
@@ -177,6 +179,8 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+
+# STATIC_ROOT = BASE_DIR / 'static'
 
 if ENV_TYPE == 'local':
     STATICFILES_DIRS = (

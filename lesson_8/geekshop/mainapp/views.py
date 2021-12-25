@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page, never_cache
+from django.db.models import F, Q
 
 
 def get_links_menu():
@@ -65,9 +66,13 @@ def product(request, pk):
 
 
 def index(request):
+    is_home = Q(category__name='дом')
+    is_office = Q(category__name='офис')
     context = {
         'title': 'Главная',
-        'products': Product.objects.all()[:4],
+        'products': Product.objects.filter(
+            is_home | is_office
+        ),
     }
     return render(request, 'mainapp/index.html', context)
 
