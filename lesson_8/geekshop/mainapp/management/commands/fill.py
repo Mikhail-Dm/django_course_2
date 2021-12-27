@@ -7,7 +7,6 @@ from mainapp.models import ProductCategory, Product
 from authapp.models import ShopUser
 
 
-
 def load_from_json(file_name):
     with open(f'{settings.BASE_DIR}/json/{file_name}.json', 'r') as json_file:
         return json.load(json_file)
