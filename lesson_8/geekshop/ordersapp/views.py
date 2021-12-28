@@ -5,6 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, pre_delete
+from django.db.models import F
 
 from basketapp.models import Basket
 from mainapp.models import Product
