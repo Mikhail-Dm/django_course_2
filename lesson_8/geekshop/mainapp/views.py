@@ -46,6 +46,7 @@ def get_products():
         return Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
 
 
+# @never_cache
 def get_hot_product():
     return random.sample(list(Product.objects.all()), 1)[0]
 
@@ -85,7 +86,6 @@ def contact(request):
 
 
 @cache_page(3600)
-@never_cache
 def products(request, pk=None, page=1):
     links_menu = get_links_menu()
     if pk is not None:

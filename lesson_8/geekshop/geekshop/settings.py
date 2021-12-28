@@ -56,7 +56,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'authapp.ShopUser'
 
 MIDDLEWARE = [
-    'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware', 1й для кэширования всего сайта
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,7 +69,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
 
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware', 2й для кэширования всего сайта
 ]
 
 if DEBUG:
@@ -252,4 +252,4 @@ CACHES = {
     }
 }
 
-LOW_CACHE = False
+LOW_CACHE = True
